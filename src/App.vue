@@ -1,21 +1,25 @@
 <template>
-  <div v-if="analyticallyData.length > 0">
+  <div class="container w-100" v-if="analyticallyData.length > 0">
    <BarChart  :analyticallyData="analyticallyData" :chartColor="{selectedColor:selectedColor.value}" />
-    <div class="row p-2
-      <div class="col-12 col-lg-5 border rounded mt-2 py-2 select" >
+    <div class="row ">
+      <div class=" col-12 col-lg-4 border rounded mt-2 py-2 select" >
             <label>Выбрать цвет</label>
-              <select name="chart_color" id="chart_color" v-model="selectedColor"  >
+              <select class="form-select" id="chart_color" v-model="selectedColor"  >
                 <option v-for="(label, key) in labels"
                         :key="key" :value="label" > {{ label.name }}
                 </option>
               </select>
       </div>
     </div>
+    <div class="info">
+
+    </div>
   </div>
   <div v-else>
       Загрузка данных...
   </div>
 </template>
+
 
 <script >
 import BarChart from "@/components/BarChart";
@@ -45,9 +49,10 @@ export default {
           value: "#2980b9"
         }
       ],
-      selectedColor: {name: "Голубой",
-                      value: "#2980b9"},
-      chartColor: null,
+      selectedColor: {
+        name: "Голубой",
+        value: "#2980b9"
+      },
       analyticallyData: []
     }
   },

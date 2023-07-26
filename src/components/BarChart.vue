@@ -7,7 +7,8 @@
 </template>
 <script >
 import Vue3ChartJs from '@j-t-mcc/vue3-chartjs'
-import { reactive } from 'vue'
+import {reactive, watch } from 'vue'
+// import { watchEffect } from 'vue'
 
 export default {
   components: {
@@ -24,7 +25,10 @@ export default {
   setup (props) {
     const propses = reactive(props)
     const chaertAttrData = Object.values( propses.analyticallyData)
-    const chaertAttrColor = Object.values(propses.chartColor)
+    const chaertAttr = reactive(props.chartColor)
+    watch(()=>props.chartColor, (newValue)=>{
+      chaertAttr.value = newValue
+    })
     const barChart = {
       type: "bar",
       options: {
@@ -49,22 +53,17 @@ export default {
         },
       },
       data: {
-        labels: Object.values(chaertAttrData).map(item=> Object.values(item)[0]),
+        labels:  Object.values(chaertAttrData).map(item=> Object.values(item)[0]),
         datasets: [
           {
-            label: Object.values(chaertAttrData).map(item=> Object.values(item)[0]),
-            backgroundColor: Object.values(chaertAttrColor),
+            label: "Chart", //Object.values(chaertAttrData).map(item=> Object.values(item)[0]),
+            backgroundColor: Object.values(chaertAttr),
             data: Object.values(chaertAttrData).map(item=> Object.values(item)[1]),
           },
         ],
       },
     };
-        // watchEffect(() => {
-        //   // Обновляем данные графика
-        //   barChart.data.labels = Object.values(chaertAttrData).map(item => Object.values(item)[0])
-        //   barChart.data.datasets[0].data = Object.values(chaertAttrData).map(item => Object.values(item)[1])
-        //   // barChart.data.datasets[1].backgroundColor = Object.values(chaertAttrColor)
-        // })
+
 
       return {
         barChart,
@@ -75,7 +74,7 @@ export default {
 
 <style scoped>
 div{
-  height:600px;
+  height: 350px;
   width: 600px;
   display: flex;
   flex-direction:column;
