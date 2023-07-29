@@ -33,7 +33,7 @@ export default {
       type: "bar",
       options: {
         min: 0,
-        max: 1000,
+        max: 1200,
         responsive: true,
         plugins: {
           legend: {
@@ -43,7 +43,7 @@ export default {
         scales: {
           y: {
             min: 5,
-            max: 1000,
+            max: 1200,
             ticks: {
               callback: function (value) {
                 return `${value}` ;

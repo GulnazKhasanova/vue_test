@@ -3,6 +3,12 @@
       <div class="row p-2">
         <div class="col-12 col-lg-5 border mt-2 py-2 select" >
       <BarChart  :analyticallyData="analyticallyData" :chartColor="{selectedColor:selectedColor.value}" />
+          <div class="info">
+            <font-awesome-icon icon="fa-regular fa-circle-question" />
+             <div class="hint">
+               Динамика продаж
+             </div>
+          </div>
         </div>
       <div class="col-12 col-lg-5 border mt-2 py-2 select" >
             <label>Выбрать цвет</label>
@@ -13,9 +19,7 @@
               </select>
       </div>
     </div>
-    <div class="info">
 
-    </div>
   </div>
   <div v-else>
       Загрузка данных...
@@ -84,6 +88,15 @@ export default {
 </script>
 
 <style lang="scss">
+.hint-enter-active,
+.hint-leavel-active{
+  transition: opacity 0.9s ease;
+}
+.hint-enter-from,
+.hint-leavel-from{
+  opacity:0;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -97,6 +110,27 @@ export default {
   border-radius: 5px;
   margin: 5px;
   padding: 10px;
+  .info{
+    display: flex;
+    position: absolute;
+    top: 7px;
+    right: 20px;
+    .hint{
+      opacity:0;
+      position:absolute;
+      margin-top:20px;
+      padding: 10px 7px 10px 7px;
+      right: -10px;
+      background-color:#585757;
+      border-radius:10px;
+      color: #fff;
+      transition: opacity 0.9s ease;
+    }
+    .hint:hover{
+      opacity: 1;
+    }
+
+  }
 }
 .select{
   position: relative;
