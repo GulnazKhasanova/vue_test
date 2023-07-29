@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div >
     <vue3-chart-js
         v-bind="{ ...barChart }"
     ></vue3-chart-js>
@@ -72,11 +72,17 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 div{
-  height: 350px;
-  width: 600px;
+  height:249px;
+  width: 498px;
   display: flex;
   flex-direction:column;
+}
+.border{
+  border: 1px solid rgb(0, 0, 0, 20%);
+  border-radius: 5px;
+  margin: 5px;
+  padding: 10px;
 }
 </style>

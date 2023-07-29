@@ -8,6 +8,7 @@ import { faPhone } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 library.add(faPhone);
 
+
 const app = createApp(App)
 
 const store = createStore({

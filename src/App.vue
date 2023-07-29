@@ -1,10 +1,12 @@
 <template>
   <div class="container w-100" v-if="analyticallyData.length > 0">
-   <BarChart  :analyticallyData="analyticallyData" :chartColor="{selectedColor:selectedColor.value}" />
-    <div class="row ">
-      <div class=" col-12 col-lg-4 border rounded mt-2 py-2 select" >
+      <div class="row p-2">
+        <div class="col-12 col-lg-5 border mt-2 py-2 select" >
+      <BarChart  :analyticallyData="analyticallyData" :chartColor="{selectedColor:selectedColor.value}" />
+        </div>
+      <div class="col-12 col-lg-5 border mt-2 py-2 select" >
             <label>Выбрать цвет</label>
-              <select class="form-select" id="chart_color" v-model="selectedColor"  >
+              <select class="form-select" name="chart_color" id="chart_color" v-model="selectedColor"  >
                 <option v-for="(label, key) in labels"
                         :key="key" :value="label" > {{ label.name }}
                 </option>
@@ -81,13 +83,29 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 5px;
+}
+.border{
+  border: 1px solid rgb(0, 0, 0, 20%);
+  border-radius: 5px;
+  margin: 5px;
+  padding: 10px;
+}
+.select{
+  position: relative;
+  label{
+    position: absolute;
+    top: 0px;
+    left: 20px;
+    background: #ffffff;
+    padding: 0 4px;
+    font-size: 12px;}
 }
 </style>
