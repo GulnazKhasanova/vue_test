@@ -7,8 +7,8 @@
 </template>
 <script >
 import Vue3ChartJs from '@j-t-mcc/vue3-chartjs'
-import {reactive, watch } from 'vue'
-// import { watchEffect } from 'vue'
+import {reactive } from 'vue'
+import { watchEffect } from 'vue'
 
 export default {
   components: {
@@ -25,10 +25,10 @@ export default {
   setup (props) {
     const propses = reactive(props)
     const chaertAttrData = Object.values( propses.analyticallyData)
-    const chaertAttr = reactive(props.chartColor)
-    watch(()=>props.chartColor, (newValue)=>{
-      chaertAttr.value = newValue
-    })
+    const chaertAttr = propses.chartColor
+    // watch(()=>propses.chartColor, (newValue)=>{
+    //       Object.assign(chaertAttr, newValue)
+    //     })
     const barChart = {
       type: "bar",
       options: {
@@ -63,8 +63,9 @@ export default {
         ],
       },
     };
-
-
+    watchEffect(()=>{
+      barChart.data.datasets[0].backgroundColor = Object.values(chaertAttr)
+    })
       return {
         barChart,
       };
